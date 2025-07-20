@@ -1,2 +1,9 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Force .cs files to count as the main language
+*.cs linguist-detectable=true
+
+# Ignore Mathematica files from language stats
+*.nb linguist-detectable=false
+*.m linguist-detectable=false
