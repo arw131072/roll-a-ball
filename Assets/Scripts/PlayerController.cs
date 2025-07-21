@@ -9,11 +9,13 @@ public class PlayerController : MonoBehaviour
    private Rigidbody rb; // rigidbody of the player
    private float movementX;  // movement along X and Y axes.
    private float movementY;
+   private int count; // count of pickups collected
    public float speed = 0;  // player speed
 
    void Start()
    {
       rb = GetComponent<Rigidbody>(); // attach rb to player
+      count = 0; 
    }
 
    void OnMove(InputValue movementValue) // called on movement input
@@ -32,8 +34,9 @@ public class PlayerController : MonoBehaviour
    private void OnTriggerEnter(Collider other) // called upon collision
    {
       if (other.gameObject.CompareTag("Pickup"))
-      { 
+      {
          other.gameObject.SetActive(false); // deactivate the collided object
+         count = count + 1;
       }
    }
 }
