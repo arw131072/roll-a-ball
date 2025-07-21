@@ -6,36 +6,34 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
- private Rigidbody rb; // Rigidbody of the player.s
- private float movementX;  // Movement along X and Y axes.
- private float movementY;
- public float speed = 0;  // Speed at which the player moves.
+   private Rigidbody rb; // rigidbody of the player
+   private float movementX;  // movement along X and Y axes.
+   private float movementY;
+   public float speed = 0;  // player speed
 
- // Start is called before the first frame update.
- void Start()
-    {
-// Get the Rigidbody component attached to this GameObject.
-        rb = GetComponent<Rigidbody>();
-    }
- 
- // This function is called when a move input is detected.
- void OnMove(InputValue movementValue)
-    {
- // Convert the input value into a Vector2 for movement.
-        Vector2 movementVector = movementValue.Get<Vector2>();
+   void Start()
+   {
+      rb = GetComponent<Rigidbody>(); // attach rb to player
+   }
 
- // Store the X and Y components of the movement.
-        movementX = movementVector.x; 
-        movementY = movementVector.y; 
-    }
+   void OnMove(InputValue movementValue) // called on movement input
+   {
+      Vector2 movementVector = movementValue.Get<Vector2>(); // convert movement input to vector2
+      movementX = movementVector.x;
+      movementY = movementVector.y;
+   }
 
- // FixedUpdate is called once per fixed frame-rate frame.
- private void FixedUpdate() 
-    {
- // Create a 3D movement vector using the X and Y inputs.
-        Vector3 movement = new Vector3 (movementX, 0.0f, movementY);
-
- // Apply force to the Rigidbody to move the player.
-        rb.AddForce(movement * speed); 
-    }
+   private void FixedUpdate() // called once per frame
+   {
+      Vector3 movement = new Vector3(movementX, 0.0f, movementY);
+      rb.AddForce(movement * speed); // apply force to player rb
+   }
+    
+   private void OnTriggerEnter(Collider other) // called upon collision
+   {
+      if (other.gameObject.CompareTag("Pickup"))
+      { 
+         other.gameObject.SetActive(false); // deactivate the collided object
+      }
+   }
 }
