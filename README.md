@@ -9,3 +9,4 @@ notes:
 3. For windows computer, also change "build-setting" to intel-64 bits.
 4. *Prefabs* can be used in any scenes of the game.
 5. With `Global coordinates`, the Scene view tools will always point in the same directions, regardless of how the selected object is rotated. This will make it easier to move the Pickups straight along the X and Z planes.
+6. 'Alt + Shift' to show options for anchoring textbox to the canvas. (create - UI - Text mesh pro)
